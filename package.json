@@ -1,0 +1,8 @@
+{
+  "name": "contracts-v3j",
+  "version": "3.9.3",
+  "description": "Nayms contracts-v3",
+  "dependencies": {
+    "@nayms/contracts": "3.9.3"
+  }
+}
