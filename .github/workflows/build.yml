@@ -7,16 +7,18 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GIT_TOKEN }}
 
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '21'
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Cache local Maven repository
         uses: actions/cache@v2
@@ -27,4 +29,6 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Deploy to GitHub
-        run: mvn --batch-mode -DuseGitHubPackages=true -gs settings.xml deploy
+        run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
