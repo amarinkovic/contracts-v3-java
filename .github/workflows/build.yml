@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      with:
+        with:
           token: ${{ secrets.GIT_TOKEN }}
 
       - uses: actions/setup-java@v3
@@ -27,4 +27,4 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Deploy to GitHub
-        run: mvn --batch-mode -DuseGitHubPackages=true deploy
+        run: mvn --batch-mode -DuseGitHubPackages=true -gs settings.xml deploy
