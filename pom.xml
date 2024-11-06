@@ -179,6 +179,14 @@
             </plugin>        
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/amarinkovic/contracts-v3-java</url>
+        </repository>
+    </distributionManagement>
+
     <profiles>
         <profile>
             <id>github</id>
